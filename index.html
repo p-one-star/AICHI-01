@@ -94,7 +94,7 @@
             transform: translateY(10px) rotate(-12deg) scale(1.1);
         }
 
-        /* 中央配置のタイトル（★03なのでシアンに変更） */
+        /* 中央配置のタイトル */
         .header-center {
             position: absolute;
             left: 50%;
@@ -126,7 +126,7 @@
             margin-left: auto;
         }
 
-        /* Language Toggle (シアンからライムイエローへ変更) */
+        /* Language Toggle */
         .lang-toggle {
             background: rgba(20, 20, 24, 0.5);
             border: 1px solid var(--text-muted);
@@ -205,7 +205,7 @@
             letter-spacing: 1px;
         }
 
-        /* Comic Display (ライムイエローからシアンへ変更) */
+        /* Comic Display */
         .comic-area {
             margin: 20px 0 40px;
             text-align: center;
@@ -241,7 +241,7 @@
             border: none;
         }
 
-        /* Description Area (シアンからライムイエローへ変更) */
+        /* Description Area */
         .desc-area {
             background: var(--bg-panel);
             border: 1px solid var(--border-dim);
@@ -279,10 +279,9 @@
             font-weight: bold;
         }
 
-        /* ピンクテキストの視認性最適化 */
         .hl-pink {
-            color: #ff4d88; /* 日本語でも読みやすいように、元の #ff0055 より少し明るく設定 */
-            text-shadow: 0 0 4px rgba(255, 0, 85, 0.3); /* 発光の広がりを抑えて輪郭をシャープに */
+            color: #ff4d88;
+            text-shadow: 0 0 4px rgba(255, 0, 85, 0.3);
             font-weight: bold;
         }
 
@@ -452,7 +451,6 @@
             font-weight: bold;
         }
         
-        /* 次へボタン (ライムイエローからシアンへ変更) */
         .btn-nav.next {
             border-left: 3px solid var(--neon-cyan);
         }
@@ -508,7 +506,6 @@
             max-height: 95vh;
         }
 
-        /* モーダル画像シャドウ (ライムイエローからシアンへ変更) */
         .modal-content img {
             max-width: 100%;
             max-height: 95vh;
@@ -745,7 +742,7 @@
         <div class="comic-area">
             <div class="comic-wrapper" onclick="openModal()">
                 <div style="background:#000; width:100%; aspect-ratio:9/16; display:flex; align-items:center; justify-content:center; color:#333; font-family:monospace;">
-                    <img src="f03.PNG" alt="FHW Comic 03" onerror="this.onerror=null; this.src='f03.png'; if(this.src==='f03.png') { this.style.display='none'; this.parentNode.innerHTML='[f03.PNG goes here]'; }">
+                    <img src="AICHI.jpeg" alt="FHW Comic AICHI 01" onerror="this.onerror=null; this.src='AICHI.jpg'; if(this.src==='AICHI.jpg') { this.style.display='none'; this.parentNode.innerHTML='[AICHI.jpeg goes here]'; }">
                 </div>
             </div>
         </div>
@@ -872,7 +869,7 @@
     <div class="modal" id="comicModal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeModal(event)">×</div>
-            <img src="f03.PNG" alt="FHW Comic 03 Full" onerror="this.onerror=null; this.src='f03.png'; if(this.src==='f03.png') { this.style.display='none'; }">
+            <img src="AICHI.jpeg" alt="FHW Comic AICHI 01 Full" onerror="this.onerror=null; this.src='AICHI.jpg'; if(this.src==='AICHI.jpg') { this.style.display='none'; }">
         </div>
     </div>
 
@@ -912,9 +909,9 @@
     </div>
 
     <script>
-        // 固定のシェア用URLを設定 (★03用)
-        const SHARE_URL = "https://p-one-star.github.io/FUNKY-03/";
-        const MEDIA_URL = "https://p-one-star.github.io/FUNKY-03/f03.PNG";
+        // SNSシェア用設定（必要に応じてリポジトリURL等を変更してください）
+        const SHARE_URL = "https://p-one-star.github.io/FUNKY-03/"; // 必要に応じてAICHI-01等に変更
+        const MEDIA_URL = "https://p-one-star.github.io/FUNKY-03/AICHI.jpeg"; 
 
         // Language Toggle Function
         function toggleLang() {
