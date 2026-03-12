@@ -411,44 +411,6 @@
             object-fit: cover;
         }
 
-        /* 左側の枠なし用スタイル */
-        .extra-image-wrapper.no-border {
-            background: transparent;
-            border: none;
-        }
-
-        .extra-image-wrapper.no-border:hover {
-            border-color: transparent;
-            transform: none; /* 枠なしの場合はホバーで浮かせない */
-        }
-
-        .extra-image-wrapper.no-border img {
-            width: 55%; /* テキストを入れるために画像サイズを調整 */
-            height: auto;
-            object-fit: contain;
-            margin: 10px 0;
-        }
-
-        /* マップ用のテキストスタイル */
-        .map-label {
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-align: center;
-            line-height: 1.3;
-        }
-        
-        .map-coords {
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            font-size: 0.65rem;
-            letter-spacing: 1px;
-            text-align: center;
-            line-height: 1.3;
-            opacity: 0.8;
-        }
-
         /* Share Area */
         .share-area {
             text-align: center;
@@ -943,15 +905,13 @@
 
         <!-- Extra Images Area (左右に2つ並ぶ画像スペース) -->
         <div class="extra-images-area">
-            <div class="extra-image-wrapper no-border">
-                <!-- 左側：枠なしでテキストと aj.PNG を配置 -->
-                <div class="map-label">AICHI.JAPAN</div>
-                <img src="aj.PNG" alt="Aichi Map" onerror="this.onerror=null; this.src='aj.png'; if(this.src==='aj.png') { this.style.display='none'; this.parentNode.innerHTML='[aj.PNG goes here]'; }">
-                <div class="map-coords">35.1850°N<br>136.8997°E</div>
+            <div class="extra-image-wrapper">
+                <!-- 左側：Roots.PNG を配置 -->
+                <img src="Roots.PNG" alt="Roots" onerror="this.onerror=null; this.src='Roots.png'; if(this.src==='Roots.png') { this.style.display='none'; this.parentNode.innerHTML='[Roots.PNG goes here]'; }">
             </div>
             <div class="extra-image-wrapper">
-                <!-- 右側：01ba.PNG を配置 -->
-                <img src="01ba.PNG" alt="Aichi Extra" onerror="this.onerror=null; this.src='01ba.png'; if(this.src==='01ba.png') { this.style.display='none'; this.parentNode.innerHTML='[01ba.PNG goes here]'; }">
+                <!-- 右側：maru.PNG を配置 -->
+                <img src="maru.PNG" alt="Maru" onerror="this.onerror=null; this.src='maru.png'; if(this.src==='maru.png') { this.style.display='none'; this.parentNode.innerHTML='[maru.PNG goes here]'; }">
             </div>
         </div>
 
