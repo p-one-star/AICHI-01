@@ -30,6 +30,8 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* 今回は「はみ出し」を活かすため、overflow-x: hidden は維持しつつ、
+           要素自体が枠外に飛び出すデザインとしています。 */
         body {
             background-color: var(--bg-base);
             color: var(--text-main);
@@ -181,7 +183,6 @@
 
         /* Title Area */
         .title-area {
-            /* ヘッダー(50px)との隙間を詰めるため、80pxから60pxに変更 */
             margin-top: 60px;
             text-align: center;
             padding: 10px 0 10px; 
@@ -192,7 +193,6 @@
         /* タイトル全体の設定 */
         .main-title {
             font-family: 'Black Ops One', sans-serif;
-            /* ベースサイズを大幅に大きく (スマホでは画面幅に合わせて拡大) */
             font-size: clamp(2.2rem, 8vw, 3rem); 
             font-weight: normal;
             color: #9999a1; 
@@ -209,18 +209,18 @@
 
         /* 個別の行のサイズ設定 (倍率) */
         .title-origin {
-            font-size: 1.4em; /* OFの1.4倍 */
+            font-size: 1.4em; 
             letter-spacing: 1px; 
         }
 
         .title-of {
-            font-size: 1em; /* 基準サイズ */
+            font-size: 1em; 
             letter-spacing: 2px;
             margin: 2px 0; 
         }
 
         .title-fhw {
-            font-size: 1.6em; /* OFの1.6倍 */
+            font-size: 1.6em; 
             letter-spacing: 2px; 
             margin-top: -5px; 
         }
@@ -379,7 +379,7 @@
             justify-content: space-between;
             align-items: center; 
             gap: 15px;
-            margin-bottom: 50px;
+            margin-bottom: 70px; 
             opacity: 0;
             animation: fadeIn 1s forwards 0.6s;
         }
@@ -389,26 +389,29 @@
             aspect-ratio: 1 / 1;
             background: transparent; 
             border: none; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             position: relative;
             transition: transform 0.3s ease;
         }
 
-        /* 左側の画像を絶対配置で中央から拡大し、テキストの背面に置く */
+        /* 左側の画像を「はみ出し仕様」の超巨大サイズに！ */
         .img-left {
             position: absolute;
             top: 50%;
             left: 50%;
-            /* 180%からさらに拡大し、少し上にオフセット */
-            width: 220%; 
+            width: 240%; 
             height: auto;
             max-width: none;
             object-fit: contain; 
-            transform: translate(-50%, -60%); 
-            z-index: 1; /* レイヤーを文字より下にする */
-            pointer-events: none; /* 画像が文字の選択を邪魔しないようにする */
+            transform: translate(-50%, -50%); 
+            z-index: 1; 
+            pointer-events: none; 
         }
 
-        /* 右側の画像を絶対配置で中央から配置 */
+        /* 右側の画像 */
         .img-right {
             position: absolute;
             top: 50%;
@@ -417,56 +420,57 @@
             height: auto;
             max-width: none; 
             object-fit: contain; 
-            transform: translate(-50%, -40%); /* 少し下にズラす */
+            transform: translate(-50%, -40%); 
             z-index: 1;
         }
 
         /* --- マップ用のスタイリッシュなテキスト設定 --- */
         .map-top-text {
             position: absolute;
-            top: -20px; 
+            top: -45px; /* 右の車の上に配置するため、上へズラす */
             left: 50%;
             transform: translateX(-50%);
-            text-align: center;
-            z-index: 10; /* レイヤーを一番上にする */
+            text-align: center; /* 中央揃えに */
+            z-index: 10; 
             width: 100%;
         }
 
         .map-top-text .coords {
             font-family: 'Impact', sans-serif;
             color: #7a7a85; /* スタイリッシュなグレー */
-            font-size: 0.9rem;
+            font-size: 1rem;
             line-height: 1.1;
             letter-spacing: 1px;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8); /* 視認性を上げる影 */
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8);
         }
 
         .map-top-text .divider {
             width: 70px;
             height: 2px;
             background-color: #7a7a85;
-            margin: 4px auto;
+            margin: 4px auto; /* 中央揃え */
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
 
         .map-top-text .local-roots {
             font-family: 'Impact', sans-serif;
             color: #7a7a85;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9);
         }
 
+        /* 下部の AICHI.JAPAN テキストを大きく */
         .map-bottom-text {
             position: absolute;
-            bottom: -20px; 
+            bottom: -40px; 
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Impact', sans-serif;
             color: #7a7a85;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            z-index: 10; /* レイヤーを一番上にする */
+            font-size: 1.6rem; 
+            letter-spacing: 3px;
+            z-index: 10; 
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8);
             white-space: nowrap;
         }
@@ -966,22 +970,22 @@
         <!-- Extra Images Area (左右に2つ並ぶ画像スペース) -->
         <div class="extra-images-area">
             <div class="extra-image-wrapper">
-                <!-- 追加：上部の座標テキスト -->
-                <div class="map-top-text">
-                    <div class="coords">35.1850°N<br>136.8997°E</div>
-                    <div class="divider"></div>
-                    <div class="local-roots">LOCAL ROOTS</div>
-                </div>
-                
-                <!-- 左側：aj.PNG を配置（エラー時に親要素を上書きしないように修正） -->
+                <!-- 左側：aj.PNG を「はみ出し仕様」の超巨大サイズで配置 -->
                 <img src="aj.PNG" alt="Aichi Map" class="img-left" onerror="this.onerror=null; this.src='aj.png';">
                 
-                <!-- 追加：下部のテキスト -->
+                <!-- 下部のテキスト（大きく強調） -->
                 <div class="map-bottom-text">
                     AICHI.JAPAN
                 </div>
             </div>
             <div class="extra-image-wrapper">
+                <!-- 移動：上部の座標テキスト（右側の車の上に配置） -->
+                <div class="map-top-text">
+                    <div class="coords">35.1850°N<br>136.8997°E</div>
+                    <div class="divider"></div>
+                    <div class="local-roots">LOCAL ROOTS</div>
+                </div>
+
                 <!-- 右側：maru.PNG を配置 -->
                 <img src="maru.PNG" alt="Maru" class="img-right" onerror="this.onerror=null; this.src='maru.png';">
             </div>
