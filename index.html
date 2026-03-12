@@ -432,15 +432,17 @@
             /* ★名古屋城の位置調整用★ */
             top: 40%; 
             left: 35%; 
-            width: 36px;
-            height: 36px;
-            border: 2px solid var(--neon-red);
+            width: 18px; /* サイズを半分に */
+            height: 18px; /* サイズを半分に */
+            border: 1px solid var(--neon-red); /* 線も細く */
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
             pointer-events: none;
-            box-shadow: 0 0 8px var(--neon-red), inset 0 0 8px var(--neon-red);
-            /* ★変更：アニメーションを4秒周期にして、ごくわずかな動きに */
+            /* ★丸の中をスモークっぽくする（赤いモヤ） */
+            background: radial-gradient(circle, rgba(255, 0, 34, 0.4) 0%, rgba(255, 0, 34, 0) 70%);
+            box-shadow: 0 0 5px var(--neon-red), inset 0 0 5px var(--neon-red);
+            /* アニメーションを4秒周期にして、ごくわずかな動きに */
             animation: targetPulse 4s infinite ease-in-out;
         }
 
@@ -448,26 +450,26 @@
         .target-mark::before {
             content: '';
             position: absolute;
-            top: -10px;
-            bottom: -10px;
+            top: -5px; /* 線を短く */
+            bottom: -5px; /* 線を短く */
             left: 50%;
-            width: 2px;
+            width: 1px; /* 線を細く */
             background-color: var(--neon-red);
             transform: translateX(-50%);
-            box-shadow: 0 0 5px var(--neon-red);
+            box-shadow: 0 0 3px var(--neon-red);
         }
 
         /* 横の線 */
         .target-mark::after {
             content: '';
             position: absolute;
-            left: -10px;
-            right: -10px;
+            left: -5px; /* 線を短く */
+            right: -5px; /* 線を短く */
             top: 50%;
-            height: 2px;
+            height: 1px; /* 線を細く */
             background-color: var(--neon-red);
             transform: translateY(-50%);
-            box-shadow: 0 0 5px var(--neon-red);
+            box-shadow: 0 0 3px var(--neon-red);
         }
 
         /* 中央のドット */
@@ -475,16 +477,16 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 4px;
-            height: 4px;
+            width: 2px; /* ドットも小さく */
+            height: 2px; /* ドットも小さく */
             background-color: var(--neon-red);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 6px var(--neon-red);
+            box-shadow: 0 0 4px var(--neon-red);
             z-index: 11;
         }
 
-        /* ★変更：動きを極限まで抑え、「言われてみれば動いてる」レベルの渋い拍動に */
+        /* 動きを極限まで抑え、「言われてみれば動いてる」レベルの渋い拍動に */
         @keyframes targetPulse {
             0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.98); }
             50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
