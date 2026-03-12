@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AICHI ★01 - FUNKY HOTDOG WORKS</title>
     <style>
-        /* Google Fonts: Black Ops One を読み込み (ハテナマーク用) */
+        /* Google Fonts: Black Ops One を読み込み (ハテナマーク・ヘッダー・タイトル用) */
         @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
         /* Base Variables */
@@ -104,10 +104,10 @@
         }
 
         .header-center span {
-            font-family: 'Impact', sans-serif;
-            font-size: min(2.2rem, 6vw);
+            font-family: 'Black Ops One', sans-serif;
+            font-size: min(2rem, 5.5vw);
             line-height: 1;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             color: #000000;
             text-shadow: 
                 0 0 2px var(--neon-cyan),
@@ -181,21 +181,48 @@
 
         /* Title Area */
         .title-area {
-            margin-top: 80px;
+            /* ヘッダー(50px)との隙間を詰めるため、80pxから60pxに変更 */
+            margin-top: 60px;
             text-align: center;
-            padding: 20px 0 10px;
+            padding: 10px 0 10px; /* 上下のパディングも少し調整 */
             opacity: 0;
             animation: fadeIn 1s forwards 0.2s;
         }
 
+        /* タイトル全体の設定 */
         .main-title {
-            font-family: 'Impact', sans-serif;
-            font-size: 2.2rem;
+            font-family: 'Black Ops One', sans-serif;
+            /* ベースサイズを大幅に大きく (スマホでは画面幅に合わせて拡大) */
+            font-size: clamp(2.2rem, 8vw, 3rem); 
             font-weight: normal;
-            letter-spacing: 2px;
-            color: var(--text-main);
-            margin-bottom: 10px;
+            color: #9999a1; 
+            text-shadow: 
+                0 0 3px rgba(255, 255, 255, 0.6),
+                0 0 8px rgba(255, 255, 255, 0.2);
+            margin-bottom: 5px;
             text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 0.95; 
+        }
+
+        /* 個別の行のサイズ設定 (倍率) */
+        .title-origin {
+            font-size: 1.4em; /* OFの1.4倍 */
+            letter-spacing: 1px; /* 文字が大きくなったので間隔は少し控えめに */
+        }
+
+        .title-of {
+            font-size: 1em; /* 基準サイズ */
+            letter-spacing: 2px;
+            margin: 2px 0; /* 隙間をさらに詰める */
+        }
+
+        .title-fhw {
+            font-size: 1.6em; /* OFの1.6倍 */
+            letter-spacing: 2px; 
+            margin-top: -5px; /* 上へ引き上げる */
         }
 
         .sub-title {
@@ -203,6 +230,7 @@
             font-size: 1.2rem;
             color: var(--text-muted);
             letter-spacing: 1px;
+            margin-top: 10px;
         }
 
         /* Comic Display */
@@ -247,7 +275,7 @@
             border: 1px solid var(--border-dim);
             border-left: 3px solid var(--neon-lime);
             padding: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             opacity: 0;
             animation: slideUpFade 1s forwards 0.5s;
         }
@@ -280,8 +308,8 @@
         }
 
         .hl-pink {
-            color: #ff4d88;
-            text-shadow: 0 0 4px rgba(255, 0, 85, 0.3);
+            color: #ff2a75;
+            text-shadow: 0 0 5px rgba(255, 0, 85, 0.4);
             font-weight: bold;
         }
 
@@ -343,6 +371,44 @@
 
         .stamp-icon:hover {
             transform: rotate(-12deg) scale(1.15);
+        }
+
+        /* --- Extra Images Area (左右に2つ並ぶ画像スペース) --- */
+        .extra-images-area {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.6s;
+        }
+
+        .extra-image-wrapper {
+            flex: 1;
+            aspect-ratio: 1 / 1;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-dim);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .extra-image-wrapper:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+        }
+
+        .extra-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Share Area */
@@ -451,6 +517,7 @@
             font-weight: bold;
         }
         
+        /* 次へボタン (ライムイエローからシアンへ変更) */
         .btn-nav.next {
             border-left: 3px solid var(--neon-cyan);
         }
@@ -732,8 +799,16 @@
     <div class="container">
         <!-- Title Area -->
         <div class="title-area">
-            <h1 class="main-title lang-en">KING OF THE MOUNTAIN</h1>
-            <h1 class="main-title lang-jp">KING OF THE MOUNTAIN</h1>
+            <h1 class="main-title lang-en">
+                <span class="title-origin">ORIGIN</span>
+                <span class="title-of">OF</span>
+                <span class="title-fhw">FHW</span>
+            </h1>
+            <h1 class="main-title lang-jp">
+                <span class="title-origin">ORIGIN</span>
+                <span class="title-of">OF</span>
+                <span class="title-fhw">FHW</span>
+            </h1>
             <p class="sub-title lang-en">Too wild. Too stupid. Too Funky.</p>
             <p class="sub-title lang-jp">Too wild. Too stupid. Too Funky.</p>
         </div>
@@ -816,7 +891,7 @@
                 </p>
                 <p>
                     愛知と言えば<br>
-                    <span class="hl-pink">味噌カツだもんで。</span>
+                    <span class="hl-pink">味噌カツだて。</span>
                 </p>
                 
                 <div class="crafted-wrapper">
@@ -825,6 +900,18 @@
                         C R A F T E D <span class="hinomaru-wrapper"><span class="hinomaru"></span>I N</span> J A P A N
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Extra Images Area (左右に2つ並ぶ画像スペース) -->
+        <div class="extra-images-area">
+            <div class="extra-image-wrapper">
+                <!-- 左側：画像用の枠 -->
+                <img src="" alt="" onerror="this.onerror=null; this.style.display='none'; this.parentNode.innerHTML='[Image 1]';">
+            </div>
+            <div class="extra-image-wrapper">
+                <!-- 右側：画像用の枠 -->
+                <img src="" alt="" onerror="this.onerror=null; this.style.display='none'; this.parentNode.innerHTML='[Image 2]';">
             </div>
         </div>
 
@@ -1085,7 +1172,7 @@
         function getShareText() {
             const isJp = document.body.getAttribute('data-lang') === 'jp';
             if (isJp) {
-                return "愛知と言えば、味噌カツだもんで。\n愛知 ★01.\n#FHW #FUNKYHOTDOGWORKS";
+                return "愛知と言えば、味噌カツだて。\n愛知 ★01.\n#FHW #FUNKYHOTDOGWORKS";
             } else {
                 return "Because in Aichi, it’s miso-katsu.\nAICHI ★01.\n#FHW #FUNKYHOTDOGWORKS";
             }
