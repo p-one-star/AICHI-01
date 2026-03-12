@@ -31,17 +31,13 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ★超重要★ 
-           「はみ出し」を視覚的に活かしつつ、ブラウザのネイティブ横スクロールを完全に殺す設定。
-           これで1回のスワイプで確実にNEXT UIが発動します。 */
-        html, body {
+        /* スクロールを止める設定を削除し、あの時の「はみ出しスクロール」ができる状態に戻しました！ */
+        body {
             background-color: var(--bg-base);
             color: var(--text-main);
             font-family: var(--font-main);
             line-height: 1.6;
             overflow-x: hidden;
-            width: 100%;
-            position: relative;
         }
 
         a {
@@ -187,7 +183,6 @@
 
         /* Title Area */
         .title-area {
-            /* ヘッダー(50px)との隙間を詰めるため、80pxから60pxに変更 */
             margin-top: 60px;
             text-align: center;
             padding: 10px 0 10px; 
@@ -384,7 +379,7 @@
             justify-content: space-between;
             align-items: center; 
             gap: 15px;
-            margin-bottom: 90px; /* 下の文字と被らないように余白を確保 */
+            margin-bottom: 90px; 
             opacity: 0;
             animation: fadeIn 1s forwards 0.6s;
         }
@@ -416,24 +411,22 @@
             pointer-events: none; 
         }
 
-        /* ★右側の画像：やりすぎた220%から「190%」に縮小し、程よく見切れる位置に調整 */
+        /* ★右側の画像を 190% に調整し、程よく見切れる右寄りに配置！ */
         .img-right {
             position: absolute;
             top: 50%;
-            left: 50%;
-            width: 190%; /* 160%と220%の中間 */
+            left: 60%; /* 中心より右に寄せてはみ出させる */
+            width: 190%; /* 220%から縮小し、程よいデカさに */
             height: auto;
             max-width: none; 
             object-fit: contain; 
-            /* 少し右(-40%)に寄せて、後ろ側を見切れさせる。下(-30%)にズラす */
-            transform: translate(-40%, -30%); 
+            transform: translate(-50%, -30%); 
             z-index: 1;
         }
 
         /* --- 照準マーク（スナイパースコープ） --- */
         .target-mark {
             position: absolute;
-            /* ★名古屋城の位置調整用★ */
             top: 35%; 
             left: 30%; 
             width: 18px; 
@@ -443,14 +436,11 @@
             transform: translate(-50%, -50%);
             z-index: 10;
             pointer-events: none;
-            /* 丸の中をスモークっぽくする（赤いモヤ） */
             background: radial-gradient(circle, rgba(255, 0, 34, 0.4) 0%, rgba(255, 0, 34, 0) 70%);
             box-shadow: 0 0 5px var(--neon-red), inset 0 0 5px var(--neon-red);
-            /* アニメーションを4秒周期にして、ごくわずかな動きに */
             animation: targetPulse 4s infinite ease-in-out;
         }
 
-        /* 縦の線 */
         .target-mark::before {
             content: '';
             position: absolute;
@@ -463,7 +453,6 @@
             box-shadow: 0 0 3px var(--neon-red);
         }
 
-        /* 横の線 */
         .target-mark::after {
             content: '';
             position: absolute;
@@ -476,7 +465,6 @@
             box-shadow: 0 0 3px var(--neon-red);
         }
 
-        /* 中央のドット */
         .target-mark .dot {
             position: absolute;
             top: 50%;
@@ -490,18 +478,15 @@
             z-index: 11;
         }
 
-        /* 動きを極限まで抑え、「言われてみれば動いてる」レベルの渋い拍動に */
         @keyframes targetPulse {
             0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.98); }
             50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
         }
 
         /* --- マップ用のスタイリッシュなテキスト設定 --- */
-        
-        /* 座標テキストは右の画像（車）の上に移動 */
         .map-top-text {
             position: absolute;
-            top: -45px; /* 車が少し小さくなったので位置を微調整 */
+            top: -45px; 
             left: 50%;
             transform: translateX(-50%);
             text-align: center; 
@@ -511,7 +496,7 @@
 
         .map-top-text .coords {
             font-family: 'Impact', sans-serif;
-            color: #7a7a85; /* スタイリッシュなグレー */
+            color: #7a7a85; 
             font-size: 0.75rem; 
             line-height: 1.1;
             letter-spacing: 1px;
@@ -1073,7 +1058,7 @@
                     <div class="local-roots">LOCAL ROOTS</div>
                 </div>
 
-                <!-- 右側：maru.PNG を大きく右にズラして配置 -->
+                <!-- 右側：maru.PNG を程よく見切れるように配置 -->
                 <img src="maru.PNG" alt="Maru" class="img-right" onerror="this.onerror=null; this.src='maru.png';">
             </div>
         </div>
