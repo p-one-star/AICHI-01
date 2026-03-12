@@ -183,6 +183,7 @@
 
         /* Title Area */
         .title-area {
+            /* ヘッダー(50px)との隙間を詰めるため、80pxから60pxに変更 */
             margin-top: 60px;
             text-align: center;
             padding: 10px 0 10px; 
@@ -425,12 +426,14 @@
         }
 
         /* --- マップ用のスタイリッシュなテキスト設定 --- */
+        
+        /* 座標テキストは右の画像（車）の上に移動 */
         .map-top-text {
             position: absolute;
-            top: -45px; /* 右の車の上に配置するため、上へズラす */
+            top: -25px; /* 車の上に配置 */
             left: 50%;
             transform: translateX(-50%);
-            text-align: center; /* 中央揃えに */
+            text-align: center; 
             z-index: 10; 
             width: 100%;
         }
@@ -438,37 +441,37 @@
         .map-top-text .coords {
             font-family: 'Impact', sans-serif;
             color: #7a7a85; /* スタイリッシュなグレー */
-            font-size: 1rem;
+            font-size: 0.8rem; /* 少し小さめに調整 */
             line-height: 1.1;
             letter-spacing: 1px;
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8);
         }
 
         .map-top-text .divider {
-            width: 70px;
+            width: 60px; /* 文字に合わせて線も短く */
             height: 2px;
             background-color: #7a7a85;
-            margin: 4px auto; /* 中央揃え */
+            margin: 4px auto; 
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
 
         .map-top-text .local-roots {
             font-family: 'Impact', sans-serif;
             color: #7a7a85;
-            font-size: 0.8rem;
+            font-size: 0.65rem; /* 少し小さめに調整 */
             letter-spacing: 2px;
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9);
         }
 
-        /* 下部の AICHI.JAPAN テキストを大きく */
+        /* 下部の AICHI.JAPAN テキスト */
         .map-bottom-text {
             position: absolute;
-            bottom: -40px; 
+            bottom: -60px; /* 前より少し下にズラす */
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Impact', sans-serif;
             color: #7a7a85;
-            font-size: 1.6rem; 
+            font-size: 1.3rem; /* 少し小さめに調整（前回1.6rem） */
             letter-spacing: 3px;
             z-index: 10; 
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8);
@@ -973,13 +976,13 @@
                 <!-- 左側：aj.PNG を「はみ出し仕様」の超巨大サイズで配置 -->
                 <img src="aj.PNG" alt="Aichi Map" class="img-left" onerror="this.onerror=null; this.src='aj.png';">
                 
-                <!-- 下部のテキスト（大きく強調） -->
+                <!-- 下部のテキスト -->
                 <div class="map-bottom-text">
                     AICHI.JAPAN
                 </div>
             </div>
             <div class="extra-image-wrapper">
-                <!-- 移動：上部の座標テキスト（右側の車の上に配置） -->
+                <!-- 右側：座標テキストを配置 -->
                 <div class="map-top-text">
                     <div class="coords">35.1850°N<br>136.8997°E</div>
                     <div class="divider"></div>
