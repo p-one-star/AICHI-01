@@ -210,19 +210,19 @@
         /* 個別の行のサイズ設定 (倍率) */
         .title-origin {
             font-size: 1.4em; /* OFの1.4倍 */
-            letter-spacing: 1px; /* 文字が大きくなったので間隔は少し控えめに */
+            letter-spacing: 1px; 
         }
 
         .title-of {
             font-size: 1em; /* 基準サイズ */
             letter-spacing: 2px;
-            margin: 2px 0; /* 隙間をさらに詰める */
+            margin: 2px 0; 
         }
 
         .title-fhw {
             font-size: 1.6em; /* OFの1.6倍 */
             letter-spacing: 2px; 
-            margin-top: -5px; /* 上へ引き上げる */
+            margin-top: -5px; 
         }
 
         .sub-title {
@@ -377,7 +377,7 @@
         .extra-images-area {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* 左右の画像を中央揃え */
+            align-items: center; 
             gap: 15px;
             margin-bottom: 50px;
             opacity: 0;
@@ -387,36 +387,88 @@
         .extra-image-wrapper {
             flex: 1;
             aspect-ratio: 1 / 1;
-            background: transparent; /* 背景を透明に */
-            border: none; /* 枠線を削除 */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background: transparent; 
+            border: none; 
             position: relative;
             transition: transform 0.3s ease;
         }
 
-        /* 左側の画像をさらに大きくし、少し上にズラす */
+        /* 左側の画像を絶対配置で中央から拡大し、テキストの背面に置く */
         .img-left {
-            width: 180%; /* 1.3倍から1.8倍に変更してさらに大きく */
-            max-width: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* 180%からさらに拡大し、少し上にオフセット */
+            width: 220%; 
             height: auto;
+            max-width: none;
             object-fit: contain; 
-            position: relative;
-            z-index: 1;
-            transform: translateY(-20px); 
+            transform: translate(-50%, -60%); 
+            z-index: 1; /* レイヤーを文字より下にする */
+            pointer-events: none; /* 画像が文字の選択を邪魔しないようにする */
         }
 
-        /* 右側の画像を1.6倍にし、少し下にズラす */
+        /* 右側の画像を絶対配置で中央から配置 */
         .img-right {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 160%; 
-            max-width: none; 
             height: auto;
+            max-width: none; 
             object-fit: contain; 
-            position: relative;
+            transform: translate(-50%, -40%); /* 少し下にズラす */
             z-index: 1;
-            transform: translateY(20px); 
+        }
+
+        /* --- マップ用のスタイリッシュなテキスト設定 --- */
+        .map-top-text {
+            position: absolute;
+            top: -20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10; /* レイヤーを一番上にする */
+            width: 100%;
+        }
+
+        .map-top-text .coords {
+            font-family: 'Impact', sans-serif;
+            color: #7a7a85; /* スタイリッシュなグレー */
+            font-size: 0.9rem;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8); /* 視認性を上げる影 */
+        }
+
+        .map-top-text .divider {
+            width: 70px;
+            height: 2px;
+            background-color: #7a7a85;
+            margin: 4px auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+        }
+
+        .map-top-text .local-roots {
+            font-family: 'Impact', sans-serif;
+            color: #7a7a85;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9);
+        }
+
+        .map-bottom-text {
+            position: absolute;
+            bottom: -20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Impact', sans-serif;
+            color: #7a7a85;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            z-index: 10; /* レイヤーを一番上にする */
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8);
+            white-space: nowrap;
         }
 
         /* Share Area */
@@ -914,12 +966,24 @@
         <!-- Extra Images Area (左右に2つ並ぶ画像スペース) -->
         <div class="extra-images-area">
             <div class="extra-image-wrapper">
-                <!-- 左側：aj.PNG を枠からはみ出すように配置 -->
-                <img src="aj.PNG" alt="Roots" class="img-left" onerror="this.onerror=null; this.src='aj.png'; if(this.src==='aj.png') { this.style.display='none'; this.parentNode.innerHTML='[aj.PNG goes here]'; }">
+                <!-- 追加：上部の座標テキスト -->
+                <div class="map-top-text">
+                    <div class="coords">35.1850°N<br>136.8997°E</div>
+                    <div class="divider"></div>
+                    <div class="local-roots">LOCAL ROOTS</div>
+                </div>
+                
+                <!-- 左側：aj.PNG を配置（エラー時に親要素を上書きしないように修正） -->
+                <img src="aj.PNG" alt="Aichi Map" class="img-left" onerror="this.onerror=null; this.src='aj.png';">
+                
+                <!-- 追加：下部のテキスト -->
+                <div class="map-bottom-text">
+                    AICHI.JAPAN
+                </div>
             </div>
             <div class="extra-image-wrapper">
-                <!-- 右側：maru.PNG を少し小さめに配置 -->
-                <img src="maru.PNG" alt="Maru" class="img-right" onerror="this.onerror=null; this.src='maru.png'; if(this.src==='maru.png') { this.style.display='none'; this.parentNode.innerHTML='[maru.PNG goes here]'; }">
+                <!-- 右側：maru.PNG を配置 -->
+                <img src="maru.PNG" alt="Maru" class="img-right" onerror="this.onerror=null; this.src='maru.png';">
             </div>
         </div>
 
