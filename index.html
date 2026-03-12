@@ -31,13 +31,16 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* スクロールを止める設定を削除し、あの時の「はみ出しスクロール」ができる状態に戻しました！ */
+        /* 今回は「はみ出し」を活かすため、overflow-x: hidden は維持しつつ、
+           要素自体が枠外に飛び出すデザインとしています。 */
         body {
             background-color: var(--bg-base);
             color: var(--text-main);
             font-family: var(--font-main);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         a {
@@ -183,6 +186,7 @@
 
         /* Title Area */
         .title-area {
+            /* ヘッダー(50px)との隙間を詰めるため、80pxから60pxに変更 */
             margin-top: 60px;
             text-align: center;
             padding: 10px 0 10px; 
@@ -379,7 +383,7 @@
             justify-content: space-between;
             align-items: center; 
             gap: 15px;
-            margin-bottom: 90px; 
+            margin-bottom: 90px; /* 下の文字と被らないように余白を確保 */
             opacity: 0;
             animation: fadeIn 1s forwards 0.6s;
         }
@@ -411,16 +415,17 @@
             pointer-events: none; 
         }
 
-        /* ★右側の画像を 190% に調整し、程よく見切れる右寄りに配置！ */
+        /* ★右側の画像：サイズ190%のまま、少し左にズラして見切れすぎないように調整 */
         .img-right {
             position: absolute;
             top: 50%;
-            left: 60%; /* 中心より右に寄せてはみ出させる */
-            width: 190%; /* 220%から縮小し、程よいデカさに */
+            left: 50%;
+            width: 190%; 
             height: auto;
             max-width: none; 
             object-fit: contain; 
-            transform: translate(-50%, -30%); 
+            /* -40%から-45%に変更して、少し左に引き戻す */
+            transform: translate(-45%, -30%); 
             z-index: 1;
         }
 
@@ -484,10 +489,12 @@
         }
 
         /* --- マップ用のスタイリッシュなテキスト設定 --- */
+        
+        /* ★座標テキスト：下に下げ、少し右に寄せる */
         .map-top-text {
             position: absolute;
-            top: -45px; 
-            left: 50%;
+            top: -20px; /* -45pxから下に移動 */
+            left: 55%;  /* 50%から少し右に移動 */
             transform: translateX(-50%);
             text-align: center; 
             z-index: 10; 
@@ -1058,7 +1065,7 @@
                     <div class="local-roots">LOCAL ROOTS</div>
                 </div>
 
-                <!-- 右側：maru.PNG を程よく見切れるように配置 -->
+                <!-- ★右側：maru.PNG を190%のサイズで、少し左(-45%)に戻して配置 -->
                 <img src="maru.PNG" alt="Maru" class="img-right" onerror="this.onerror=null; this.src='maru.png';">
             </div>
         </div>
