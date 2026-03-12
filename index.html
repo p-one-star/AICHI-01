@@ -397,9 +397,9 @@
             transition: transform 0.3s ease;
         }
 
-        /* 左側の画像を1.3倍にし、少し上にズラす */
+        /* 左側の画像をさらに大きくし、少し上にズラす */
         .img-left {
-            width: 130%; 
+            width: 180%; /* 1.3倍から1.8倍に変更してさらに大きく */
             max-width: none;
             height: auto;
             object-fit: contain; 
@@ -914,7 +914,7 @@
         <!-- Extra Images Area (左右に2つ並ぶ画像スペース) -->
         <div class="extra-images-area">
             <div class="extra-image-wrapper">
-                <!-- 左側：Roots.PNG を枠からはみ出すように配置 -->
+                <!-- 左側：Roots.PNG をさらに大きく枠からはみ出すように配置 -->
                 <img src="Roots.PNG" alt="Roots" class="img-left" onerror="this.onerror=null; this.src='Roots.png'; if(this.src==='Roots.png') { this.style.display='none'; this.parentNode.innerHTML='[Roots.PNG goes here]'; }">
             </div>
             <div class="extra-image-wrapper">
