@@ -184,7 +184,7 @@
             /* ヘッダー(50px)との隙間を詰めるため、80pxから60pxに変更 */
             margin-top: 60px;
             text-align: center;
-            padding: 10px 0 10px; /* 上下のパディングも少し調整 */
+            padding: 10px 0 10px; 
             opacity: 0;
             animation: fadeIn 1s forwards 0.2s;
         }
@@ -377,6 +377,7 @@
         .extra-images-area {
             display: flex;
             justify-content: space-between;
+            align-items: center; /* 左右の画像を中央揃え */
             gap: 15px;
             margin-bottom: 50px;
             opacity: 0;
@@ -386,8 +387,8 @@
         .extra-image-wrapper {
             flex: 1;
             aspect-ratio: 1 / 1;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-dim);
+            background: transparent; /* 背景を透明に */
+            border: none; /* 枠線を削除 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -395,20 +396,30 @@
             color: var(--text-muted);
             font-family: var(--font-mono);
             font-size: 0.9rem;
-            overflow: hidden;
             position: relative;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            /* overflow: hidden; を削除し、画像が枠の外にはみ出せるようにする */
+            transition: transform 0.3s ease;
         }
 
         .extra-image-wrapper:hover {
-            border-color: var(--text-muted);
             transform: translateY(-2px);
         }
 
-        .extra-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        /* 左側の画像を大きくし、全体を表示する */
+        .img-left {
+            width: 130%; /* 枠の1.3倍に拡大してはみ出させる */
+            max-width: none;
+            height: auto;
+            object-fit: contain; /* トリミングせずに全体を表示 */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 右側の画像を少し小さくし、全体を表示する */
+        .img-right {
+            width: 80%; /* 枠より一回り小さく */
+            height: auto;
+            object-fit: contain; /* トリミングせずに全体を表示 */
         }
 
         /* Share Area */
@@ -906,12 +917,12 @@
         <!-- Extra Images Area (左右に2つ並ぶ画像スペース) -->
         <div class="extra-images-area">
             <div class="extra-image-wrapper">
-                <!-- 左側：Roots.PNG を配置 -->
-                <img src="Roots.PNG" alt="Roots" onerror="this.onerror=null; this.src='Roots.png'; if(this.src==='Roots.png') { this.style.display='none'; this.parentNode.innerHTML='[Roots.PNG goes here]'; }">
+                <!-- 左側：Roots.PNG を枠からはみ出すように配置 -->
+                <img src="Roots.PNG" alt="Roots" class="img-left" onerror="this.onerror=null; this.src='Roots.png'; if(this.src==='Roots.png') { this.style.display='none'; this.parentNode.innerHTML='[Roots.PNG goes here]'; }">
             </div>
             <div class="extra-image-wrapper">
-                <!-- 右側：maru.PNG を配置 -->
-                <img src="maru.PNG" alt="Maru" onerror="this.onerror=null; this.src='maru.png'; if(this.src==='maru.png') { this.style.display='none'; this.parentNode.innerHTML='[maru.PNG goes here]'; }">
+                <!-- 右側：maru.PNG を少し小さめに配置 -->
+                <img src="maru.PNG" alt="Maru" class="img-right" onerror="this.onerror=null; this.src='maru.png'; if(this.src==='maru.png') { this.style.display='none'; this.parentNode.innerHTML='[maru.PNG goes here]'; }">
             </div>
         </div>
 
