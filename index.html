@@ -31,14 +31,17 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 今回は「はみ出し」を活かすため、overflow-x: hidden は維持しつつ、
-           要素自体が枠外に飛び出すデザインとしています。 */
-        body {
+        /* ★超重要★ 
+           「はみ出し」を視覚的に活かしつつ、ブラウザのネイティブ横スクロールを完全に殺す設定。
+           これで1回のスワイプで確実にNEXT UIが発動します。 */
+        html, body {
             background-color: var(--bg-base);
             color: var(--text-main);
             font-family: var(--font-main);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         a {
@@ -399,7 +402,7 @@
             transition: transform 0.3s ease;
         }
 
-        /* ★左側の画像を「はみ出し仕様」の超巨大サイズ（240%）に大復活！ */
+        /* 左側の画像を「はみ出し仕様」の超巨大サイズに！ */
         .img-left {
             position: absolute;
             top: 50%;
@@ -413,23 +416,24 @@
             pointer-events: none; 
         }
 
-        /* ★右側の画像を大きくし、右側にズラして「右端を見切れさせる」 */
+        /* ★右側の画像：やりすぎた220%から「190%」に縮小し、程よく見切れる位置に調整 */
         .img-right {
             position: absolute;
             top: 50%;
-            left: 60%; /* 中心より右に寄せてはみ出させる */
-            width: 220%; /* 車を大きくする */
+            left: 50%;
+            width: 190%; /* 160%と220%の中間 */
             height: auto;
             max-width: none; 
             object-fit: contain; 
-            transform: translate(-50%, -30%); /* 下へも少しズラす */
+            /* 少し右(-40%)に寄せて、後ろ側を見切れさせる。下(-30%)にズラす */
+            transform: translate(-40%, -30%); 
             z-index: 1;
         }
 
         /* --- 照準マーク（スナイパースコープ） --- */
         .target-mark {
             position: absolute;
-            /* ★名古屋城の位置調整用★ 画像が240%になったので位置もそれに合わせる */
+            /* ★名古屋城の位置調整用★ */
             top: 35%; 
             left: 30%; 
             width: 18px; 
@@ -497,7 +501,7 @@
         /* 座標テキストは右の画像（車）の上に移動 */
         .map-top-text {
             position: absolute;
-            top: -45px; /* 車が大きくなったので少し上へ逃がす */
+            top: -45px; /* 車が少し小さくなったので位置を微調整 */
             left: 50%;
             transform: translateX(-50%);
             text-align: center; 
