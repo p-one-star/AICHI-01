@@ -393,33 +393,30 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
             position: relative;
-            /* overflow: hidden; を削除し、画像が枠の外にはみ出せるようにする */
             transition: transform 0.3s ease;
         }
 
-        .extra-image-wrapper:hover {
-            transform: translateY(-2px);
-        }
-
-        /* 左側の画像を大きくし、全体を表示する */
+        /* 左側の画像を1.3倍にし、少し上にズラす */
         .img-left {
-            width: 130%; /* 枠の1.3倍に拡大してはみ出させる */
+            width: 130%; 
             max-width: none;
             height: auto;
-            object-fit: contain; /* トリミングせずに全体を表示 */
+            object-fit: contain; 
             position: relative;
             z-index: 1;
+            transform: translateY(-20px); 
         }
 
-        /* 右側の画像を少し小さくし、全体を表示する */
+        /* 右側の画像を1.6倍にし、少し下にズラす */
         .img-right {
-            width: 80%; /* 枠より一回り小さく */
+            width: 160%; 
+            max-width: none; 
             height: auto;
-            object-fit: contain; /* トリミングせずに全体を表示 */
+            object-fit: contain; 
+            position: relative;
+            z-index: 1;
+            transform: translateY(20px); 
         }
 
         /* Share Area */
