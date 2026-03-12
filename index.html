@@ -381,7 +381,7 @@
             justify-content: space-between;
             align-items: center; 
             gap: 15px;
-            margin-bottom: 70px; 
+            margin-bottom: 90px; /* 下の文字と被らないように余白を確保 */
             opacity: 0;
             animation: fadeIn 1s forwards 0.6s;
         }
@@ -399,7 +399,7 @@
             transition: transform 0.3s ease;
         }
 
-        /* 左側の画像を「はみ出し仕様」の超巨大サイズに！ */
+        /* ★左側の画像を「はみ出し仕様」の超巨大サイズ（240%）に大復活！ */
         .img-left {
             position: absolute;
             top: 50%;
@@ -413,33 +413,33 @@
             pointer-events: none; 
         }
 
-        /* 右側の画像 */
+        /* ★右側の画像を大きくし、右側にズラして「右端を見切れさせる」 */
         .img-right {
             position: absolute;
             top: 50%;
-            left: 50%;
-            width: 160%; 
+            left: 60%; /* 中心より右に寄せてはみ出させる */
+            width: 220%; /* 車を大きくする */
             height: auto;
             max-width: none; 
             object-fit: contain; 
-            transform: translate(-50%, -40%); 
+            transform: translate(-50%, -30%); /* 下へも少しズラす */
             z-index: 1;
         }
 
         /* --- 照準マーク（スナイパースコープ） --- */
         .target-mark {
             position: absolute;
-            /* ★名古屋城の位置調整用★ */
-            top: 40%; 
-            left: 35%; 
-            width: 18px; /* サイズを半分に */
-            height: 18px; /* サイズを半分に */
-            border: 1px solid var(--neon-red); /* 線も細く */
+            /* ★名古屋城の位置調整用★ 画像が240%になったので位置もそれに合わせる */
+            top: 35%; 
+            left: 30%; 
+            width: 18px; 
+            height: 18px; 
+            border: 1px solid var(--neon-red); 
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
             pointer-events: none;
-            /* ★丸の中をスモークっぽくする（赤いモヤ） */
+            /* 丸の中をスモークっぽくする（赤いモヤ） */
             background: radial-gradient(circle, rgba(255, 0, 34, 0.4) 0%, rgba(255, 0, 34, 0) 70%);
             box-shadow: 0 0 5px var(--neon-red), inset 0 0 5px var(--neon-red);
             /* アニメーションを4秒周期にして、ごくわずかな動きに */
@@ -450,10 +450,10 @@
         .target-mark::before {
             content: '';
             position: absolute;
-            top: -5px; /* 線を短く */
-            bottom: -5px; /* 線を短く */
+            top: -5px; 
+            bottom: -5px; 
             left: 50%;
-            width: 1px; /* 線を細く */
+            width: 1px; 
             background-color: var(--neon-red);
             transform: translateX(-50%);
             box-shadow: 0 0 3px var(--neon-red);
@@ -463,10 +463,10 @@
         .target-mark::after {
             content: '';
             position: absolute;
-            left: -5px; /* 線を短く */
-            right: -5px; /* 線を短く */
+            left: -5px; 
+            right: -5px; 
             top: 50%;
-            height: 1px; /* 線を細く */
+            height: 1px; 
             background-color: var(--neon-red);
             transform: translateY(-50%);
             box-shadow: 0 0 3px var(--neon-red);
@@ -477,8 +477,8 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 2px; /* ドットも小さく */
-            height: 2px; /* ドットも小さく */
+            width: 2px; 
+            height: 2px; 
             background-color: var(--neon-red);
             border-radius: 50%;
             transform: translate(-50%, -50%);
@@ -497,7 +497,7 @@
         /* 座標テキストは右の画像（車）の上に移動 */
         .map-top-text {
             position: absolute;
-            top: -25px; /* 車の上に配置 */
+            top: -45px; /* 車が大きくなったので少し上へ逃がす */
             left: 50%;
             transform: translateX(-50%);
             text-align: center; 
@@ -1069,7 +1069,7 @@
                     <div class="local-roots">LOCAL ROOTS</div>
                 </div>
 
-                <!-- 右側：maru.PNG を配置 -->
+                <!-- 右側：maru.PNG を大きく右にズラして配置 -->
                 <img src="maru.PNG" alt="Maru" class="img-right" onerror="this.onerror=null; this.src='maru.png';">
             </div>
         </div>
