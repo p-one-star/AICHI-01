@@ -17,6 +17,7 @@
             --neon-cyan: #00f0ff;
             --neon-lime: #ccff00;
             --neon-pink: #ff0055;
+            --neon-red: #ff0022; /* 照準マーク用の赤 */
             --border-dim: rgba(255, 255, 255, 0.1);
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-mono: 'Courier New', Courier, monospace;
@@ -380,7 +381,7 @@
             justify-content: space-between;
             align-items: center; 
             gap: 15px;
-            margin-bottom: 90px; /* 余白をさらに増やして下の文字を被らせないように調整 */
+            margin-bottom: 70px; 
             opacity: 0;
             animation: fadeIn 1s forwards 0.6s;
         }
@@ -425,6 +426,70 @@
             z-index: 1;
         }
 
+        /* --- 照準マーク（スナイパースコープ） --- */
+        .target-mark {
+            position: absolute;
+            /* ★名古屋城の位置調整用★ */
+            top: 40%; 
+            left: 35%; 
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--neon-red);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 0 8px var(--neon-red), inset 0 0 8px var(--neon-red);
+            /* ★変更：アニメーションを4秒周期にして、ごくわずかな動きに */
+            animation: targetPulse 4s infinite ease-in-out;
+        }
+
+        /* 縦の線 */
+        .target-mark::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            left: 50%;
+            width: 2px;
+            background-color: var(--neon-red);
+            transform: translateX(-50%);
+            box-shadow: 0 0 5px var(--neon-red);
+        }
+
+        /* 横の線 */
+        .target-mark::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            right: -10px;
+            top: 50%;
+            height: 2px;
+            background-color: var(--neon-red);
+            transform: translateY(-50%);
+            box-shadow: 0 0 5px var(--neon-red);
+        }
+
+        /* 中央のドット */
+        .target-mark .dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background-color: var(--neon-red);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 6px var(--neon-red);
+            z-index: 11;
+        }
+
+        /* ★変更：動きを極限まで抑え、「言われてみれば動いてる」レベルの渋い拍動に */
+        @keyframes targetPulse {
+            0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.98); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+        }
+
         /* --- マップ用のスタイリッシュなテキスト設定 --- */
         
         /* 座標テキストは右の画像（車）の上に移動 */
@@ -441,14 +506,14 @@
         .map-top-text .coords {
             font-family: 'Impact', sans-serif;
             color: #7a7a85; /* スタイリッシュなグレー */
-            font-size: 0.75rem; /* ★少し小さめに調整 */
+            font-size: 0.75rem; 
             line-height: 1.1;
             letter-spacing: 1px;
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8);
         }
 
         .map-top-text .divider {
-            width: 50px; /* ★文字に合わせて線も少し短く */
+            width: 50px; 
             height: 2px;
             background-color: #7a7a85;
             margin: 4px auto; 
@@ -458,7 +523,7 @@
         .map-top-text .local-roots {
             font-family: 'Impact', sans-serif;
             color: #7a7a85;
-            font-size: 0.6rem; /* ★少し小さめに調整 */
+            font-size: 0.6rem; 
             letter-spacing: 2px;
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9);
         }
@@ -466,12 +531,12 @@
         /* 下部の AICHI.JAPAN テキスト */
         .map-bottom-text {
             position: absolute;
-            bottom: -70px; /* ★前よりさらに下にズラす */
+            bottom: -70px; 
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Impact', sans-serif;
             color: #7a7a85;
-            font-size: 1.3rem; /* ★少し小さめに調整 */
+            font-size: 1.3rem; 
             letter-spacing: 2px;
             z-index: 10; 
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.8);
@@ -984,6 +1049,11 @@
                 <!-- 左側：aj.PNG を「はみ出し仕様」の超巨大サイズで配置 -->
                 <img src="aj.PNG" alt="Aichi Map" class="img-left" onerror="this.onerror=null; this.src='aj.png';">
                 
+                <!-- 照準マーク（スナイパースコープ）を追加 -->
+                <div class="target-mark">
+                    <div class="dot"></div>
+                </div>
+
                 <!-- 下部のテキスト（間に国旗を挟むスタイル） -->
                 <div class="map-bottom-text">
                     <span>AICHI</span><span class="flag">🇯🇵</span><span>JAPAN</span>
